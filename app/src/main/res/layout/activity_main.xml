@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/secTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -20,14 +20,14 @@
         app:layout_constraintVertical_bias="0.10" />
 
     <TextView
-        android:id="@+id/millitextView"
+        android:id="@+id/milliTextView"
         android:layout_width="25dp"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
         android:text="00"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/secTextView"
+        app:layout_constraintStart_toEndOf="@+id/secTextView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/secTextView"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
