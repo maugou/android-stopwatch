@@ -2,6 +2,7 @@ package com.example.stopwatch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import java.util.*
 import kotlin.concurrent.timer
 import com.example.stopwatch.databinding.ActivityMainBinding
@@ -10,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private var time = 0
     private var isRunning = false
     private var timerTask: Timer? = null
+    private var lap = 1
 
     private lateinit var binding: ActivityMainBinding
 
@@ -29,6 +31,14 @@ class MainActivity : AppCompatActivity() {
                 pause()
             }
         }
+
+        binding.lapButton.setOnClickListener {
+            recodLapTime()
+        }
+
+        binding.resetFab.setOnClickListener {
+            reset()
+        }
     }
 
     private fun pause() {
@@ -37,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun start() {
-       binding.fab.setImageResource(R.drawable.ic_baseline_pause_24)
+        binding.fab.setImageResource(R.drawable.ic_baseline_pause_24)
 
         timerTask = timer(period = 10) {
             time++
@@ -51,4 +61,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun recodLapTime() {
+        val lapTime = this.time
+        val textView = TextView(this)
+        textView.text = "$lap Lap : ${lapTime / 100}.${lapTime % 100}"
+
+        binding.lapLayout.addView(textView, 0)
+        lap++
+    }
+
+    private fun reset() {
+        timerTask?.cancel()
+
+        time = 0
+        isRunning = false
+        binding.fab.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+        binding.secTextView.text = "0"
+        binding.milliTextView.text = "00"
+
+        binding.lapLayout.removeAllViews()
+        lap = 1
+    }
+
 }
