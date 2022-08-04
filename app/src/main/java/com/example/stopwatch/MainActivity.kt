@@ -35,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding.lapButton.setOnClickListener {
             recodLapTime()
         }
+
+        binding.resetFab.setOnClickListener {
+            reset()
+        }
     }
 
     private fun pause() {
@@ -65,6 +69,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.lapLayout.addView(textView, 0)
         lap++
+    }
+
+    private fun reset() {
+        timerTask?.cancel()
+
+        time = 0
+        isRunning = false
+        binding.fab.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+        binding.secTextView.text = "0"
+        binding.milliTextView.text = "00"
+
+        binding.lapLayout.removeAllViews()
+        lap = 1
     }
 
 }
